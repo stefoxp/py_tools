@@ -6,7 +6,7 @@ def csv_to_list(file_in):
     Read file_in.
     Return the list of records
 
-    :return list province
+    :return: list province
     """
     list_rows = []
 
@@ -53,7 +53,7 @@ def csv_to_option(file_in):
     Read file_in.
     Return the list of records like < option id = "AN" / >
 
-    :return list province
+    :return: list province
     """
     list_rows = []
     list_options = []
@@ -77,7 +77,7 @@ def csv_to_language(file_in):
     Read file_in.
     Return the list of records like SP.PROVINCE.<sigla>="<label=sigla>"
 
-    :return list province
+    :return: list province
     """
     list_rows = []
     list_options = []
@@ -101,20 +101,19 @@ def list_to_file_insert(list_in, file_out, field_sep=';'):
     Read list_in.
     Return file_out
 
-    :return list
+    :return: list
     """
-   # INSERT INTO ERSURB.dbo.MENSA_PIATTI
-   # (Tipo, Codice, Descrizione, Riferimento, EscludiPrenotazione, Surgelato, Con_Surgelato, Suino, Vegetariano, Biologico, Grammi60, Pane, Dolce, Unico, PU_Comprende_Contorno, PU_Comprende_Frutta, PU_Comprende_Bevanda, PU_Comprende_Pane, CI_Dolce, CI_Salato, Extra, Flg_Obsoleta)
-   # VALUES(N'10', N'E00001', N'SPAGHETTI ALLA LACRIMA + 1-9', N'RIF', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    # INSERT INTO ERSURB.dbo.MENSA_PIATTI
+    # (Tipo, Codice, Descrizione, Riferimento, EscludiPrenotazione, Surgelato, Con_Surgelato, Suino, Vegetariano, Biologico, Grammi60, Pane, Dolce, Unico, PU_Comprende_Contorno, PU_Comprende_Frutta, PU_Comprende_Bevanda, PU_Comprende_Pane, CI_Dolce, CI_Salato, Extra, Flg_Obsoleta)
+    # VALUES(N'10', N'E00001', N'SPAGHETTI ALLA LACRIMA + 1-9', N'RIF', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-   # INSERT INTO ERSURB.dbo.MENSA_MENU
-   # (Codice, Descrizione, Riferimento, Vegetariano, Biologico, SmartClient, NomePannello, Flg_Obsoleta, Flg_Standard)
-   # VALUES(N'ES1LU_P', N' Estivo_Settimana1_Lun_Pranzo', N'RIF', 0, 0, 0, N'', 0, 1);
+    # INSERT INTO ERSURB.dbo.MENSA_MENU
+    # (Codice, Descrizione, Riferimento, Vegetariano, Biologico, SmartClient, NomePannello, Flg_Obsoleta, Flg_Standard)
+    # VALUES(N'ES1LU_P', N' Estivo_Settimana1_Lun_Pranzo', N'RIF', 0, 0, 0, N'', 0, 1);
   
-   # INSERT INTO ERSURB.dbo.MENSA_MENU_DETT
-   # (Menu, Tipo, Posizione, Piatto)
-   # VALUES('', '', 0, '');
-
+    # INSERT INTO ERSURB.dbo.MENSA_MENU_DETT
+    # (Menu, Tipo, Posizione, Piatto)
+    # VALUES('', '', 0, '');
 
     tools.print_obj('', 'w', file_out)
 
@@ -131,23 +130,23 @@ def list_to_file_insert(list_in, file_out, field_sep=';'):
 
 if __name__ == '__main__':
     '''
-    piatti_in = 'data/piatti.csv'
-    piatti_out = 'data/piatti.sql'
+    plates_in = 'data/plates.csv'
+    plates_out = 'data/plates.sql'
    
-    piatti_lst = csv_to_list(piatti_in)
-    list_to_file_insert(piatti_lst, piatti_out)
+    plates = csv_to_list(plates_in)
+    list_to_file_insert(plates_lst, plates_out)
    
     menu_in = 'data/menu.csv'
     menu_out = 'data/menu.sql'
    
-    piatti_lst = csv_to_list(menu_in)
-    list_to_file_insert(piatti_lst, menu_out)
+    plates = csv_to_list(menu_in)
+    list_to_file_insert(plates_lst, menu_out)
     '''
-    menu_in = 'data/contorno.csv'
-    menu_out = 'data/contorno.sql'
+    menu_in = 'data/side_dish.csv'
+    menu_out = 'data/side_dish.sql'
    
-    piatti_lst = csv_to_list(menu_in)
-    list_to_file_insert(piatti_lst, menu_out)
+    plates = csv_to_list(menu_in)
+    list_to_file_insert(plates, menu_out)
     
 
 

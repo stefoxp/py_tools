@@ -1,13 +1,13 @@
 import sys
 
 
-def print_obj(obj, mode='a', destination=""):
+def print_obj(obj, mode: str = 'a', destination: str = '') -> None:
     """
-    scrive i record a video o nella destinazione indicata
+    Write the records on consolle or on the chosen destination
 
-    :param obj: una stringa o lista o altro oggetto stampabile
-    :param mode: può essere 'w', 'a', o altri valori validi per i file
-    :param destination: se omesso scrive a video altrimenti nel file indicato
+    :param obj: string or list or printable object
+    :param mode: is 'w', 'a', ...
+    :param destination: if empty is consolle else indicates the destination (file, ...)
     :return: None
     """
     if len(destination) > 0:
@@ -19,93 +19,91 @@ def print_obj(obj, mode='a', destination=""):
         print(obj)
 
 
-def string_to_list(string, separator):
+def string_to_list(string: str, separator: str) -> list:
     """
-    spezza una stringa in una lista
+    From list to string
 
     :param string:
     :param separator:
-    :return: lista dei valori contenuti nella stringa
+    :return: list of values from the string
     """
     result = string.split(separator)
 
     return result
 
 
-def replace_string_element(original_string, substitution_list):
+def replace_string_element(original_string: str, substitution_list: list) -> str:
     """
-    Sostituisce una lista di elementi all'interno della stringa originale
+    Replace a list of items into the original string
 
-    :param original_string: stringa di partenza
-    :param substitution_list: lista di sostituti. Ogni elemento ha la forma ('valore_attuale', 'valore_nuovo')
-    :return: stringa di elementi aggiornati
+    :param original_string: string
+    :param substitution_list: Each element is ('actual value', 'new value')
+    :return: updated string
     """
     result = original_string
 
-    # for riga in originali:
     for element in substitution_list:
-        # print('elemento: (', elemento[0], elemento[1], ')')
         result = result.replace(element[0], element[1])
 
     return result
 
 
-def sostituisci_elementi_lista(originali, sostituti):
+def replace_list_elements(original_elements: list, new_elements: list) -> list:
     """
-    Sostituisce una lista di elementi all'interno della lista originale
+    Replace a list of elements into original list
 
-    :param originali: lista di elementi di partenza
-    :param sostituti: lista di sostituti. Ogni elemento ha la forma ('valore_attuale', 'valore_nuovo')
-    :return: lista di elementi aggiornati
+    :param original_elements:
+    :param new_elements: each element is ('actual value', 'new value')
+    :return:
     """
-    risultato = []  # ['catid', 'name']
+    result = []
 
-    for valore in originali:
-        for elemento in sostituti:
-            if valore == elemento[0]:
-                risultato.append(elemento[1])
+    for value in original_elements:
+        for element in new_elements:
+            if value == element[0]:
+                result.append(element[1])
 
-    return risultato
+    return result
 
 
-def trova_in_lista(stringa, lista):
+def find_in_list(string: str, my_list: list) -> int:
     """
-    cerca una stringa all'interno di una lista
+    Find a string into a list
 
-    :param stringa:
-    :param lista:
-    :return: 0 in caso di successo
+    :param string:
+    :param my_list:
+    :return: 0 = success
     """
-    risultato = 0
+    result = 0
 
-    if not(stringa in lista):
-        risultato = 1
+    if not (string in my_list):
+        result = 1
 
-    return risultato
-
-
-def prepara_sostituti(stringa_da_csv):
-    risultato_list = []
-    stringa_da_csv = stringa_da_csv.replace("'", "")
-    stringa_da_csv = stringa_da_csv.replace(" ", "")
-
-    preliminare_list = stringa_da_csv.splitlines()
-    for elemento in preliminare_list:
-        risultato_list.append(elemento.split(','))
-
-    return risultato_list
+    return result
 
 
-def wrapper_piattaforma(path):
+def remove_bad_chars(string_from_csv: str) -> list:
+    result = []
+    string_from_csv = string_from_csv.replace("'", "")
+    string_from_csv = string_from_csv.replace(" ", "")
+
+    temporary_list = string_from_csv.splitlines()
+    for element in temporary_list:
+        result.append(element.split(','))
+
+    return result
+
+
+def platform_wrapper(path):
     """
-    Gestisce il path in windows
+    Manage the path
 
     :param path:
-    :return: path adattato alla piattaforma
+    :return: the path format for the current platform
     """
-    percorso = path
+    result = path
 
     if 'win' in sys.platform:
-        percorso = path.replace('/', '\\')
+        result = path.replace('/', '\\')
 
-    return percorso
+    return result
