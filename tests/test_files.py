@@ -1,5 +1,6 @@
 from library import files
 
+
 def test_file_encoding_convert():
     path_file_in = './data/dist200015an-verificato.xml'
     path_file_out = './data/test_file_out.xml'

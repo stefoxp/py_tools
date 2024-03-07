@@ -1,5 +1,5 @@
-def file_encoding_convert(path_from: str, path_to: str, 
-                         encoding_from: str, encoding_to: str = "utf-8") -> bool:
+def file_encoding_convert(path_from: str, path_to: str,
+                          encoding_from: str, encoding_to: str = "utf-8") -> bool:
     """
     Convert file from encoding_from to encoding_to
     """
@@ -38,6 +38,7 @@ def file_encoding_convert(path_from: str, path_to: str,
         file_out.write(content)
 
     return True
+
 
 '''
 def file_clean(path_from: str, path_to: str,
