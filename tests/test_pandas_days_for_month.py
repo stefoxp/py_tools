@@ -1,7 +1,17 @@
 from library import pandas_days_for_month
 import pandas as pd
 
-def test_days_for_month():
+# def test_days_for_month():
+def test_fill_string():
+    test_cases = [('1', '01'),
+                  ('11', '11')]
+    
+    for case in test_cases:
+        result = pandas_days_for_month.fill_string(case[0], final_len=2)
+
+        assert result == case[1]
+
+def test_add_days_for_month():
     df = pd.DataFrame()
 
     df_mock = pd.DataFrame(
