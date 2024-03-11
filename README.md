@@ -2,7 +2,11 @@
 
 Tools python library
 
-python3 -m venv env
+```bash
+py -m venv env
+
+py -m pip install -r requirements.txt
+```
 
 ## Files encoding
 

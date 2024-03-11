@@ -8,35 +8,53 @@ import pandas as pd
 def main():
     ass = pd.read_csv("data/assegnazioni.csv", sep=';')
 
-    print(ass.head())
+    # print(ass.head())
 
     # select columns
 
-    print("ASSE. DATA_ING")
-    data_in = ass["ASSE. DATA_ING"]
+    # print("ASSE. DATA_ING")
+    date_in = ass["ASSE. DATA_ING"]
 
-    print(data_in.head())
+    # print(data_in.head())
 
-    print("ASSE. DATA_UN")
-    data_out = ass["ASSE. DATA_UN"]
+    # print("ASSE. DATA_UN")
+    date_out = ass["ASSE. DATA_UN"]
 
-    print(data_out.head())
+    # print(data_out.head())
 
+    df_final = add_days_for_month(ass, 'ASSE. DATA_ING', 'ASSE. DATA_UN')
 
-    ass['StartDate'] = pd.to_datetime(data_in)
-    ass['EndDate'] = pd.to_datetime(data_out)
+    '''
+    ass['StartDate'] = pd.to_datetime(date_in)
+    ass['EndDate'] = pd.to_datetime(date_out)
 
-    print("ass:", ass.head())
+    # print("ass:", ass.head())
 
-    df1 = ass[['StartDate', 'EndDate']].apply(days_of_month, axis=1).fillna(0)
-    print('df1:', df1.head())
+    df_days = ass[['StartDate', 'EndDate']].apply(days_of_month, axis=1).fillna(0)
+    # print('df1:', df1.head())
 
-    df_final = ass[['StartDate', 'EndDate']].join([ass['StartDate'].dt.year.rename('Year'), df1])
+    # df_final = ass[['NREC', 'StartDate', 'EndDate']].join([ass['StartDate'].dt.year.rename('Year'), df1])
+    # df_final = ass[['NREC', 'StartDate', 'EndDate']].join(df_days)
+    df_final = ass.join(df_days)
+
+    print(df_final.head())
+    '''
+
+def add_days_for_month(df: pd.DataFrame, date_in: str, date_out: str) -> pd.DataFrame:
+    df['date_start'] = pd.to_datetime(df[date_in])
+    df['date_end'] = pd.to_datetime(df[date_out])
+
+    df_days = df[['date_start', 'date_end']].apply(days_of_month, axis=1).fillna(0)
+    df_final = df.join(df_days)
+
+    # debug
     print(df_final.head())
 
-def days_of_month(x):
+    return df_final
+
+def days_of_month(x) -> pd.Series:
     s = pd.date_range(*x, freq='D').to_series()
-    return s.resample('ME').count().rename(lambda x: x.month)
+    return s.resample('ME').count().rename(lambda x: str(x.year) + str(x.month))
 
 if __name__ == '__main__':
     main()
