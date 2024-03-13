@@ -1,56 +1,51 @@
-# Calculate number of days for each month between two dates
 import pandas as pd
 
+
 def main():
-    ass = pd.read_csv("data/assegnazioni.csv", sep=';')
+    FILE_IN = 'data/assegnazioni.csv'
+    FILE_OUT = 'data/assegnazioni_calc.csv'
 
-    # print(ass.head())
+    print("Debug - Elaborazione dei dati contenuti su:", FILE_IN,  "iniziata")
 
-    # select columns
-
-    # print("ASSE. DATA_ING")
-    # date_in = ass["ASSE. DATA_ING"]
-
-    # print(data_in.head())
-
-    # print("ASSE. DATA_UN")
-    # date_out = ass["ASSE. DATA_UN"]
-
-    # print(data_out.head())
+    ass = pd.read_csv(FILE_IN, sep=';')
 
     df_final = add_days_for_month(ass, 'ASSE. DATA_ING', 'ASSE. DATA_UN')
-    df_final.to_csv('data/assegnazioni_calc.csv', sep=';')
+    df_final = price_for_month(df_final)
 
-    '''
-    ass['StartDate'] = pd.to_datetime(date_in)
-    ass['EndDate'] = pd.to_datetime(date_out)
+    df_final.to_csv(FILE_OUT, sep=';')
 
-    # print("ass:", ass.head())
+    print("Debug - Elaborazione terminata. I risultati sono disponibili nel file:", FILE_OUT)
 
-    df_days = ass[['StartDate', 'EndDate']].apply(days_of_month, axis=1).fillna(0)
-    # print('df1:', df1.head())
-
-    # df_final = ass[['NREC', 'StartDate', 'EndDate']].join([ass['StartDate'].dt.year.rename('Year'), df1])
-    # df_final = ass[['NREC', 'StartDate', 'EndDate']].join(df_days)
-    df_final = ass.join(df_days)
-
-    print(df_final.head())
-    '''
 
 def add_days_for_month(df: pd.DataFrame, date_in: str, date_out: str) -> pd.DataFrame:
+    """
+        Add columns with number of days for each month between dates columns
+
+        :df: original DataFrame
+        :date_in: name of date_in column
+        :date_out: name of dat_out column
+
+        :return: Dataframe modified
+    """
+    
     df['date_start'] = pd.to_datetime(df[date_in])
     df['date_end'] = pd.to_datetime(df[date_out])
 
     df_days = df[['date_start', 'date_end']].apply(days_of_month, axis=1).fillna(0)
     df_final = df.join(df_days)
 
-    # debug
-    print(df_final.head())
-
     return df_final
 
 
 def days_of_month(x) -> pd.Series:
+    """
+        Calculate number of days for each month between dates columns
+
+        :x:
+
+        :return: Series
+    """
+
     s = pd.date_range(*x, freq='D').to_series()
     return s.resample('ME').count().rename(lambda x: str(x.year) + fill_string(str(x.month), final_len=2))
 
@@ -63,6 +58,27 @@ def fill_string(str_in: str, final_len: int = 2):
         result = '0' + result
 
     return result
+
+
+def price_for_month(df_in: pd.DataFrame, from_column: int = 48) -> pd.Series:
+    """
+        Calculate price for each month
+
+        :df_in: Dataframe
+        :from_column: first column index
+
+        :return: Dataframe with new price columns
+    """
+    MONTH_DAYS_STANDARD: float = 30.00
+    MONTH_PRICE: float = 250.00
+    DAY_PRICE: float = MONTH_PRICE / MONTH_DAYS_STANDARD
+
+    for col in df_in.iloc[:, from_column:].columns:
+        new_col_name = col + 'price'
+        df_in[new_col_name] = round(pd.to_numeric(df_in[col]) * DAY_PRICE, 2)
+        df_in[new_col_name] = df_in[new_col_name].apply(lambda price: MONTH_PRICE if price > MONTH_PRICE else price)
+    
+    return df_in.iloc[:, :]
 
 
 if __name__ == '__main__':
