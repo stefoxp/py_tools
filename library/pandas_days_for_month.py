@@ -96,7 +96,6 @@ def replace_char_in_dataframe_columns(df_in: pd.DataFrame, from_column: int, cha
         :return:        Dataframe with updated columns
     """
     for col in df_in.iloc[:, from_column:].columns:
-        # print("Debug - col:", col)
         df_in[col] = df_in[col].apply(lambda value: str(value).replace(char_old, char_new))
 
     return df_in

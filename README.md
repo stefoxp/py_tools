@@ -13,7 +13,7 @@ py -m pip install -r requirements.txt
 - [Files Module](library/files.py)
 - [Tests](tests/test_files.py)
 
-## Days for month
+## Days for month (with pandas)
 
-- [Module](library/days_for_month.py)
-- [Tests](tests/test_days_for_month.py)
+- [Module](library/pandas_days_for_month.py)
+- [Tests](tests/test_pandas_days_for_month.py)
