@@ -4,13 +4,17 @@ import pandas as pd
 def main():
     FILE_IN = 'data/assegnazioni.csv'
     FILE_OUT = 'data/assegnazioni_calc.csv'
+    # TODO calculate index from DataFrame
+    START_COLUMN_INDEX = 48
 
     print("Debug - Elaborazione dei dati contenuti su:", FILE_IN,  "iniziata")
 
     ass = pd.read_csv(FILE_IN, sep=';')
 
     df_final = add_days_for_month(ass, 'ASSE. DATA_ING', 'ASSE. DATA_UN')
-    df_final = price_for_month(df_final)
+
+    df_final = price_for_month(df_final, START_COLUMN_INDEX)
+    df_final = replace_char_in_dataframe_columns(df_final, START_COLUMN_INDEX, '.', ',')
 
     df_final.to_csv(FILE_OUT, sep=';')
 
@@ -60,14 +64,14 @@ def fill_string(str_in: str, final_len: int = 2):
     return result
 
 
-def price_for_month(df_in: pd.DataFrame, from_column: int = 48) -> pd.Series:
+def price_for_month(df_in: pd.DataFrame, from_column: int) -> pd.DataFrame:
     """
         Calculate price for each month
 
-        :df_in: Dataframe
-        :from_column: first column index
+        :df_in:         Dataframe
+        :from_column:   start column index
 
-        :return: Dataframe with new price columns
+        :return:        Dataframe with new price columns
     """
     MONTH_DAYS_STANDARD: float = 30.00
     MONTH_PRICE: float = 250.00
@@ -80,6 +84,22 @@ def price_for_month(df_in: pd.DataFrame, from_column: int = 48) -> pd.Series:
     
     return df_in.iloc[:, :]
 
+def replace_char_in_dataframe_columns(df_in: pd.DataFrame, from_column: int, char_old: str, char_new: str) -> pd.DataFrame:
+    """
+        Replace char in dataframe columns
+
+        :df_in:         original Dataframe
+        :from_column:   start column index
+        :char_old:      char to replace
+        :char_new:      new char 
+
+        :return:        Dataframe with updated columns
+    """
+    for col in df_in.iloc[:, from_column:].columns:
+        # print("Debug - col:", col)
+        df_in[col] = df_in[col].apply(lambda value: str(value).replace(char_old, char_new))
+
+    return df_in
 
 if __name__ == '__main__':
     main()

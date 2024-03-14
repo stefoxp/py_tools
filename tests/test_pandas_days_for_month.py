@@ -1,10 +1,7 @@
 from library import pandas_days_for_month
 import pandas as pd
 
-# def test_days_for_month():
-
-
-def test_price_for_month():    
+def test_replace_char_in_dataframe_columns():
     df_mock = pd.DataFrame(
         {
             'date_start': ['1', '2', '3', ],
@@ -13,8 +10,24 @@ def test_price_for_month():
         }
     )
 
-    df_result = pd.DataFrame(
+    df_result_expected = pd.DataFrame(
         {
+            'date_start': ['1', '2', '3', ],
+            'date_end': ['1', '2', '3', ],
+            '202310': ['0,0', '1,0', '31,0', ],
+        }
+    )
+
+    df_result = pandas_days_for_month.replace_char_in_dataframe_columns(df_mock, 2, '.', ',')
+
+    assert df_result_expected.equals(df_result)
+
+
+def test_price_for_month():    
+    df_mock = pd.DataFrame(
+        {
+            'date_start': ['1', '2', '3', ],
+            'date_end': ['1', '2', '3', ],
             '202310': [0.0, 1.0, 31.0, ],
         }
     )
