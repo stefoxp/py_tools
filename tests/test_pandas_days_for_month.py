@@ -1,6 +1,7 @@
 from library import pandas_days_for_month
 import pandas as pd
 
+
 def test_replace_char_in_dataframe_columns():
     df_mock = pd.DataFrame(
         {

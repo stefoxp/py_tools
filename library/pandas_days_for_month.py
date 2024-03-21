@@ -84,6 +84,7 @@ def price_for_month(df_in: pd.DataFrame, from_column: int) -> pd.DataFrame:
     
     return df_in.iloc[:, :]
 
+
 def replace_char_in_dataframe_columns(df_in: pd.DataFrame, from_column: int, char_old: str, char_new: str) -> pd.DataFrame:
     """
         Replace char in dataframe columns
@@ -99,6 +100,7 @@ def replace_char_in_dataframe_columns(df_in: pd.DataFrame, from_column: int, cha
         df_in[col] = df_in[col].apply(lambda value: str(value).replace(char_old, char_new))
 
     return df_in
+
 
 if __name__ == '__main__':
     main()
