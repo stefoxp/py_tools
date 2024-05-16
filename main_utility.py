@@ -115,13 +115,113 @@ def list_to_file_insert(list_in, file_out, field_sep=';'):
     # (Menu, Tipo, Posizione, Piatto)
     # VALUES('', '', 0, '');
 
+    '''
+    INSERT INTO [Erdis_Read].[dbo].[in4_consumazioni](
+        [DATA_REG_EBADGE]
+           ,[DATA_REG_CASSA]
+           ,[PRESIDIO]
+           ,[IDANA]
+           ,[UTENTE_ID]
+           ,[COGNOME]
+           ,[NOME]
+           ,[IDCON]
+           ,[CONSUMAZIONE_ID]
+           ,[STATUS]
+           ,[TESSERA_ID]
+           ,[IDENTIFICAZIONE_ID]
+           ,[TIPO_PAGAMENTO_ID]
+           ,[OPERATORE_USER]
+           ,[TURNO_ID]
+           ,[RISTORANTE_PRESIDIO]
+           ,[RISTORANTE]
+           ,[CASSA]
+           ,[ACQUISTO]
+           ,[TIPO_LISTINO_ID]
+           ,[PREZZO_TOTALE]
+           ,[COSTO_TOTALE]
+           ,[VALORE_PASTO]
+           ,[OFFLINE]
+           ,[PRENOTAZIONE]
+           ,[BRUCIATURA_DATA]
+           ,[BRUCIATURA_CASSA_ID]
+           ,[BRUCIATURA_CASSA]
+           ,[PRA_ANNO_ACCADEMICO]
+           ,[PRA_PROFILO_ID]
+           ,[PRA_PROFILO]
+           ,[PRA_CATEGORIA_ID]
+           ,[PRA_CATEGORIA]
+           ,[PRA_RICAVO_MENSA]
+           ,[PRA_MODALITA_ID]
+           ,[PRA_MODALITA]
+           ,[PRA_TIPO_LISTINO_ID]
+           ,[PRA_TIPO_LISTINO])
+     VALUES
+           (<DATA_REG_EBADGE, varchar(50),>
+           ,<DATA_REG_CASSA, varchar(50),>
+           ,<PRESIDIO, varchar(50),>
+           ,<IDANA, varchar(50),>
+           ,<UTENTE_ID, varchar(50),>
+           ,<COGNOME, varchar(50),>
+           ,<NOME, varchar(50),>
+           ,<IDCON, varchar(50),>
+           ,<CONSUMAZIONE_ID, varchar(50),>
+           ,<STATUS, varchar(50),>
+           ,<TESSERA_ID, varchar(50),>
+           ,<IDENTIFICAZIONE_ID, varchar(50),>
+           ,<TIPO_PAGAMENTO_ID, varchar(50),>
+           ,<OPERATORE_USER, varchar(50),>
+           ,<TURNO_ID, varchar(50),>
+           ,<RISTORANTE_PRESIDIO, varchar(50),>
+           ,<RISTORANTE, varchar(50),>
+           ,<CASSA, varchar(50),>
+           ,<ACQUISTO, varchar(50),>
+           ,<TIPO_LISTINO_ID, varchar(50),>
+           ,<PREZZO_TOTALE, varchar(50),>
+           ,<COSTO_TOTALE, varchar(50),>
+           ,<VALORE_PASTO, varchar(50),>
+           ,<OFFLINE, varchar(50),>
+           ,<PRENOTAZIONE, varchar(50),>
+           ,<BRUCIATURA_DATA, varchar(50),>
+           ,<BRUCIATURA_CASSA_ID, varchar(50),>
+           ,<BRUCIATURA_CASSA, varchar(50),>
+           ,<PRA_ANNO_ACCADEMICO, varchar(50),>
+           ,<PRA_PROFILO_ID, varchar(50),>
+           ,<PRA_PROFILO, varchar(50),>
+           ,<PRA_CATEGORIA_ID, varchar(50),>
+           ,<PRA_CATEGORIA, text,>
+           ,<PRA_RICAVO_MENSA, varchar(50),>
+           ,<PRA_MODALITA_ID, varchar(50),>
+           ,<PRA_MODALITA, varchar(50),>
+           ,<PRA_TIPO_LISTINO_ID, varchar(50),>
+           ,<PRA_TIPO_LISTINO, varchar(50),>)
+    GO
+    '''
+
+
+
     tools.print_obj('', 'w', file_out)
 
     for row in list_in:
         row = row.replace("'", "")
+        row = row.replace('"', "")
         record = row.split(field_sep)
-        tools.print_obj("INSERT INTO ERSURB.dbo.MENSA_MENU_DETT VALUES('"
-                        + record[0] + "', '" + record[1] + "', " + record[2] + ", '" + record[3] + "');",
+        tools.print_obj("INSERT INTO [Erdis_Read].[dbo].[in4_consumazioni]("
+                        + "[DATA_REG_EBADGE] ,[DATA_REG_CASSA] ,[PRESIDIO] ,[IDANA] ,[UTENTE_ID] ,[COGNOME] ,[NOME] ,[IDCON] ,[CONSUMAZIONE_ID] ,[STATUS] ,[TESSERA_ID] ,[IDENTIFICAZIONE_ID] ,[TIPO_PAGAMENTO_ID] ,[OPERATORE_USER] ,[TURNO_ID] ,[RISTORANTE_PRESIDIO] ,[RISTORANTE] ,[CASSA] ,[ACQUISTO] ,[TIPO_LISTINO_ID] ,[PREZZO_TOTALE] ,[COSTO_TOTALE] ,[VALORE_PASTO] ,[OFFLINE] ,[PRENOTAZIONE] ,[BRUCIATURA_DATA] ,[BRUCIATURA_CASSA_ID] ,[BRUCIATURA_CASSA] ,[PRA_ANNO_ACCADEMICO] ,[PRA_PROFILO_ID] ,[PRA_PROFILO] ,[PRA_CATEGORIA_ID] ,[PRA_CATEGORIA] ,[PRA_RICAVO_MENSA] ,[PRA_MODALITA_ID] ,[PRA_MODALITA] ,[PRA_TIPO_LISTINO_ID] ,[PRA_TIPO_LISTINO]"
+                        + ") VALUES ('"
+                        + record[0] + "', '" + record[1] + "', '" + record[2] + "', '"
+                        + record[3] + "', '" + record[4] + "', '" + record[5] + "', '"
+                        + record[6] + "', '" + record[7] + "', '" + record[8] + "', '"
+                        + record[9] + "', '" + record[10] + "', '" + record[11] + "', '"
+                        + record[12] + "', '" + record[13] + "', '" + record[14] + "', '"
+                        + record[15] + "', '" + record[16] + "', '" + record[17] + "', '"
+                        + record[18] + "', '" + record[19] + "', '" + record[20] + "', '"
+                        + record[21] + "', '" + record[22] + "', '" + record[23] + "', '"
+                        + record[24] + "', '" + record[25] + "', '" + record[26] + "', '"
+                        + record[27] + "', '" + record[28] + "', '" + record[29] + "', '"
+                        + record[30] + "', '" + record[31] + "', '" + record[32] + "', '"
+                        + record[33] + "', '" + record[34] + "', '" + record[35] + "', '"
+                        + record[36] + "', '" + record[37]
+                        + "');",
                         'a',
                         file_out)
 
@@ -142,8 +242,8 @@ if __name__ == '__main__':
     plates = csv_to_list(menu_in)
     list_to_file_insert(plates_lst, menu_out)
     '''
-    menu_in = 'data/side_dish.csv'
-    menu_out = 'data/side_dish.sql'
+    menu_in = 'data/consuma.csv'
+    menu_out = 'data/consuma.sql'
    
     plates = csv_to_list(menu_in)
     list_to_file_insert(plates, menu_out)
