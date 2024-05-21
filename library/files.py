@@ -1,3 +1,22 @@
+def filetxt_to_list(file_in):
+    """
+    Read file_in.
+    Return the list of records
+
+    :return: list
+    """
+    list_rows = []
+
+    try:
+        with open(file_in) as f:
+            list_rows = f.read().splitlines()
+    except OSError as Error:
+        str_msg = 'Error on csv_to_list(): ' + str(Error) + '\n'
+        
+        print(str_msg)
+
+    return list_rows
+
 def file_encoding_convert(path_from: str, path_to: str,
                           encoding_from: str, encoding_to: str = "utf-8") -> bool:
     """

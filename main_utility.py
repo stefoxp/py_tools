@@ -1,24 +1,4 @@
-from library import tools
-
-
-def csv_to_list(file_in):
-    """
-    Read file_in.
-    Return the list of records
-
-    :return: list province
-    """
-    list_rows = []
-
-    try:
-        with open(file_in) as f:
-            list_rows = f.read().splitlines()
-    except OSError as Error:
-        str_msg = 'Error on csv_to_list(): ' + str(Error) + '\n'
-        
-        print(str_msg)
-
-    return list_rows
+from library import tools, files
 
 
 def csv_up(file_in, lst_search):
@@ -245,7 +225,7 @@ if __name__ == '__main__':
     menu_in = 'data/consuma.csv'
     menu_out = 'data/consuma.sql'
    
-    plates = csv_to_list(menu_in)
+    plates = files.filetxt_to_list(menu_in)
     list_to_file_insert(plates, menu_out)
     
 
