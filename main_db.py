@@ -45,17 +45,10 @@ def main():
     conta_record = 2
 
     for record in lista_consumazioni:
-        # print(record)
-        # exit()
-
         conta_record = conta_record + 1
-        print(conta_record, "************ INSERT *************************")
-        cmd_sql = record
+        print(conta_record, "** INSERT **", record[680:-2])
 
-        # test
-        # print(cmd_sql)
-
-        rst_consumazioni.exec_sql(cmd_sql)
+        rst_consumazioni.exec_sql(record)
         connection.commit()
 
     print("************ close connection ***************************")
