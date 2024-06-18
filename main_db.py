@@ -42,16 +42,21 @@ def main():
 
     path_file_out = 'data/consuma.sql'
     lista_consumazioni = files.filetxt_to_list(path_file_out)[2:]
+    conta_record = 2
 
     for record in lista_consumazioni:
-        print("************ INSERT *************************")
+        # print(record)
+        # exit()
+
+        conta_record = conta_record + 1
+        print(conta_record, "************ INSERT *************************")
         cmd_sql = record
 
         # test
-        print(cmd_sql)
+        # print(cmd_sql)
 
-        # rst_consumazioni.exec_sql(cmd_sql)
-        # connection.commit()
+        rst_consumazioni.exec_sql(cmd_sql)
+        connection.commit()
 
     print("************ close connection ***************************")
     connection.close()
