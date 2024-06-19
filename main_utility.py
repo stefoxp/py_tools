@@ -224,9 +224,18 @@ if __name__ == '__main__':
     '''
     menu_in = 'data/consuma.csv'
     menu_out = 'data/consuma.sql'
+
+    print('********** Start **********')
    
     plates = files.filetxt_to_list(menu_in)
+
+    print('********** files.filetxt_to_list completed **********')
+    
     list_to_file_insert(plates, menu_out)
+
+    print('********** list_to_file_insert completed **********', '** File:', menu_out, ' **')
+
+    print('********** End **********')
     
 
 
