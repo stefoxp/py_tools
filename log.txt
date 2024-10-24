@@ -1,0 +1,93 @@
+Inizio elaborazione
+original_file name: AN_DET.2022-560_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E443A1B0>
+original_file name: AN_DET.2022-560_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E67E35C0>
+original_file name: AN_DET.2022-562_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E67E36B0>
+original_file name: AN_DET.2022-562_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E417A9F0>
+original_file name: AN_DET.2023-046_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240ED392F60>
+original_file name: AN_DET.2023-046_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240ED398980>
+original_file name: AN_DET.2023-047_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240ED3C57C0>
+original_file name: AN_DET.2023-047_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240ED3C5CA0>
+original_file name: AN_DET.2023-057_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240ED40A4B0>
+original_file name: AN_DET.2023-057_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240ED40A990>
+original_file name: AN_DET.2023-185_manati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240ED40A660>
+original_file name: AN_DET.2023-185_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E5FDC800>
+original_file name: AN_DET.2023-290_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240ED43E3F0>
+original_file name: AN_DET.2023-290_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240ED43D700>
+original_file name: AN_DET.2023-320_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9999100>
+original_file name: AN_DET.2023-320_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E6B795E0>
+original_file name: AN_DET.2023-334_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E6B2F6E0>
+original_file name: AN_DET.2023-334_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E6A8F3B0>
+original_file name: AN_DET.2024-153_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E6A694F0>
+original_file name: AN_DET.2024-153_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E6BED520>
+original_file name: UR_DET.2022-558_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E6BEE900>
+original_file name: UR_DET.2022-558_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E6ADD9A0>
+original_file name: UR_DET.2022-563_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E7709B50>
+original_file name: UR_DET.2022-563_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9ADD370>
+original_file name: UR_DET.2023-001_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AF1850>
+original_file name: UR_DET.2023-001_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AE0F50>
+original_file name: UR_DET.2023-044_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AF2AE0>
+original_file name: UR_DET.2023-044_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AE7E90>
+original_file name: UR_DET.2023-047_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AE4CB0>
+original_file name: UR_DET.2023-047_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AE40B0>
+original_file name: UR_DET.2023-070_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AE0FB0>
+original_file name: UR_DET.2023-070_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AEBFE0>
+original_file name: UR_DET.2023-172_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AEF5F0>
+original_file name: UR_DET.2023-172_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AF2300>
+original_file name: UR_DET.2023-195_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AF2BD0>
+original_file name: UR_DET.2023-195_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AE2D20>
+original_file name: UR_DET.2023-239_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AE2BD0>
+original_file name: UR_DET.2023-239_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AE4200>
+original_file name: UR_DET.2023-298_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9AE4470>
+original_file name: UR_DET.2023-298_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E9B06B40>
+original_file name: UR_DET.2023-319_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E74B4800>
+original_file name: UR_DET.2023-319_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240EAE40C80>
+original_file name: UR_DET.2024-154_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240ECE9D6A0>
+original_file name: UR_DET.2024-154_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240ECABE6C0>
+original_file name: UR_DET.2024-174_mandati.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240EAF1D730>
+original_file name: UR_DET.2024-174_quietanze.pdf
+writer: <pypdf._writer.PdfWriter object at 0x00000240E6CBAA20>
