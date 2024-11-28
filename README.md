@@ -17,3 +17,8 @@ py -m pip install -r requirements.txt
 
 - [Module](library/pandas_days_for_month.py)
 - [Tests](tests/test_pandas_days_for_month.py)
+
+## Generate cbi file (payments and bank transfers)
+
+- [Module](library/cbi.py)
+- [Tests](tests/test_cbi.py)
