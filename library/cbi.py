@@ -109,8 +109,6 @@ def generate(input_csv, output_cbi):
         )
         cbifile.write(record_ef)
 
-import csv
-
 def genera(input_csv, output_cbi):
     with open(input_csv, newline='', encoding='utf-8') as csvfile, open(output_cbi, 'w', encoding='utf-8') as cbifile:
         reader = csv.DictReader(csvfile, delimiter=";")
@@ -253,12 +251,96 @@ data_esecuzione;data_valuta;causale;importo;banca_ordinante_abi;cab_ordinante;co
 23122024;24122024;48000;100.50;1100;12345;678900;3262;54321;9876543210;IT60X0542811101000000123456;IT60X0542811101000000654321;Azienda S.p.A.;Via Roma 10;Roma;12345678901;Cliente S.r.l.;Via Milano 20;Milano;98765432109;20100;Banca Milano;Pagamento ordine;3262;54321;11223344
 '''
 
+import csv
+
+def cbi_to_csv(input_cbi, output_csv):
+    # TODO: aggiungere ciclo per numero_disposizione (altrimenti non funziona)
+    with open(input_cbi, 'r', encoding='utf-8') as cbifile, open(output_csv, 'a', newline='', encoding='utf-8') as csvfile:
+        # Nomi delle colonne per il CSV
+        fieldnames = [
+            "numero_disposizione", "data_esecuzione", "data_valuta", "causale", "importo", "banca_ordinante_abi", "cab_ordinante",
+            "conto_ordinante", "banca_destinataria_abi", "cab_destinataria", "conto_destinatario",
+            "iban_ordinante", "iban_destinatario", "ragione_sociale_ordinante", "indirizzo_ordinante",
+            "localita_ordinante", "codice_fiscale_ordinante", "ragione_sociale_destinatario",
+            "indirizzo_destinatario", "localita_destinatario", "codice_fiscale_destinatario",
+            "cap_destinatario", "banca_destinataria_nome", "descrizione", "abi_gateway", "codice_mp",
+            "codice_univoco"
+        ]
+
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+        current_row = {
+            field: "" for field in fieldnames  # Inizializza una riga vuota
+        }
+
+        for line in cbifile:
+            record_type = line[1:3]  # Tipo di record (es. "10", "16")
+
+            if record_type == "10":
+                current_row = {field: "" for field in fieldnames}  # Reset della riga
+                current_row["numero_disposizione"] = line[3:9].strip()
+                current_row["data_esecuzione"] = line[16:22].strip()
+                current_row["data_valuta"] = line[23:29].strip()
+                current_row["causale"] = line[28:34].strip()
+                current_row["importo"] = str(int(line[34:46].strip()) / 100)  # Cent in euro
+                current_row["banca_ordinante_abi"] = line[48:53].strip()
+                current_row["cab_ordinante"] = line[53:58].strip()
+                current_row["conto_ordinante"] = line[58:70].strip()
+                current_row["banca_destinataria_abi"] = line[70:75].strip()
+                current_row["cab_destinataria"] = line[75:80].strip()
+                current_row["conto_destinatario"] = line[80:92].strip()
+
+            elif record_type == "16":
+                current_row["iban_ordinante"] = (
+                    line[11:13].strip() + line[13:15].strip() + line[15:16].strip() +
+                    line[16:21].strip() + line[21:26].strip() + line[26:38].strip()
+                )
+
+            elif record_type == "17":
+                current_row["iban_destinatario"] = (
+                    line[11:13].strip() + line[13:15].strip() + line[15:16].strip() +
+                    line[16:21].strip() + line[21:26].strip() + line[26:38].strip()
+                )
+
+            elif record_type == "20":
+                current_row["ragione_sociale_ordinante"] = line[11:41].strip()
+                current_row["indirizzo_ordinante"] = line[41:71].strip()
+                current_row["localita_ordinante"] = line[71:101].strip()
+                current_row["codice_fiscale_ordinante"] = line[101:117].strip()
+
+            elif record_type == "30":
+                current_row["ragione_sociale_destinatario"] = "BENEFICIARIO GENERICO"  # Nome generico per privacy
+                current_row["indirizzo_destinatario"] = line[41:71].strip()
+                current_row["localita_destinatario"] = line[71:101].strip()
+                current_row["codice_fiscale_destinatario"] = line[101:117].strip()
+
+            elif record_type == "40":
+                current_row["cap_destinatario"] = line[41:46].strip()
+                current_row["banca_destinataria_nome"] = line[71:121].strip()
+
+            elif record_type == "50":
+                descrizione = current_row.get("descrizione", "")
+                current_row["descrizione"] = descrizione + line[11:101].strip()
+
+            elif record_type == "70":
+                current_row["abi_gateway"] = line[33:38].strip()
+                current_row["codice_mp"] = line[38:43].strip()
+                current_row["codice_univoco"] = line[71:101].strip()
+
+            elif record_type == "EF":
+                # Fine della disposizione, scrivi la riga nel CSV
+                writer.writerow(current_row)
+
 
 if __name__ == "__main__":
+    path_file = './data/'
     path_file_in = './data/cbi_input.csv'
     path_file_out = './data/cbi_output.cbi'
     path_file_in_it = './data/cbi_input_it.csv'
     path_file_out_it = './data/cbi_output_it.cbi'
 
     # generate(path_file_in, path_file_out)
-    genera(path_file_in_it, path_file_out_it)
+    # genera(path_file_in_it, path_file_out_it)
+
+    cbi_to_csv(path_file + "CBI_1227.sti", path_file + "cbi_output_1227.csv")
